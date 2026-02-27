@@ -58,6 +58,26 @@ function kilitliEkranGoster(no, ders) {
     `;
 }
 
+
+// Sunucudan gelen kesin onay mesajı
+socket.on('sisteme-islendi-onayi', (res) => {
+    const status = document.getElementById('status');
+    status.innerText = res.mesaj;
+    status.style.color = "#059669"; // Koyu yeşil
+
+    // Kesin onay geldiği için cihazı şimdi kilitleyelim
+    const ogrenciNo = document.getElementById('ogrenciNo').value;
+    localStorage.setItem('yoklama_' + roomId, JSON.stringify({
+        no: ogrenciNo,
+        zaman: new Date().getTime()
+    }));
+
+    setTimeout(() => {
+        kilitliEkranGoster(ogrenciNo, roomId);
+    }, 2000);
+});
+
+
 /*
 // Render'dan aldığın sunucu URL'sini buraya yapıştır
 const socket = io("https://yoklama-kw80.onrender.com");
