@@ -1,5 +1,5 @@
 // Render'dan aldığın sunucu URL'sini buraya yapıştır
-const socket = io("https://yoklama-sunucu.onrender.com");
+const socket = io("https://yoklama-kw80.onrender.com");
 
 // URL'deki ?room=ders101 kısmını yakalar
 const urlParams = new URLSearchParams(window.location.search);
